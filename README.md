@@ -24,9 +24,11 @@ npx create-react-router@latest --template remix-run/react-router-templates/cloud
 - Vite config: https://tailwindcss.com/docs/installation/using-vite
 
 ### Components
+```
+npx shadcn@canary init
+```
 - https://ui.shadcn.com/docs/installation/vite
 - https://ui.shadcn.com/docs/tailwind-v4
-
 
 ### Hosting
 - Add a domain: https://dash.cloudflare.com/09fa701545a4a89fac61393e76301e7c/home/domains
