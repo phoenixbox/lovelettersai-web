@@ -1,71 +1,28 @@
-# Welcome to React Router!
+# REPLabs Site
 
-A modern, production-ready template for building full-stack React applications using React Router.
+## Setup
 
-## Features
-
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
-
-## Getting Started
-
-### Installation
-
-Install the dependencies:
-
-```bash
-npm install
+### Init app
+```
+npx create-react-router@latest --template remix-run/react-router-templates/cloudflare .
 ```
 
-### Development
+### Config files
+#### Wrangler
+* Name for worker
+* Routes patterns for custom domain
+* Compat flags
 
-Start the development server with HMR:
-
-```bash
-npm run dev
+### Scripts
+```
+"build": "react-router build",
+"deploy": "npm run build && wrangler deploy && npm run tail",
+"tail": "wrangler tail repllabs",
 ```
 
-Your application will be available at `http://localhost:5173`.
+### Tailwind
+- Vite config: https://tailwindcss.com/docs/installation/using-vite
 
-## Building for Production
-
-Create a production build:
-
-```bash
-npm run build
-```
-
-## Deployment
-
-Deployment is done using the Wrangler CLI.
-
-To build and deploy directly to production:
-
-```sh
-npm run deploy
-```
-
-To deploy a preview URL:
-
-```sh
-npx wrangler versions upload
-```
-
-You can then promote a version to production after verification or roll it out progressively.
-
-```sh
-npx wrangler versions deploy
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
+### Components
+- https://ui.shadcn.com/docs/installation/vite
+- https://ui.shadcn.com/docs/tailwind-v4
