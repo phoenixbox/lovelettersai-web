@@ -1,3 +1,4 @@
+import { Button } from "~/components/ui/button";
 import logoDark from "./logo-dark.svg";
 import logoLight from "./logo-light.svg";
 
@@ -24,6 +25,13 @@ export function Welcome({ message }: { message: string }) {
             <p className="leading-6 text-gray-700 dark:text-gray-200 text-center">
               What&apos;s next?
             </p>
+            <div>
+              <Button variant="outline" className="cursor-pointer" onClick={() => {
+                console.log("clicked");
+              }}>
+                Hey
+              </Button>
+            </div>
             <ul>
               {resources.map(({ href, text, icon }) => (
                 <li key={href}>

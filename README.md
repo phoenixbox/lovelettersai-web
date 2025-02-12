@@ -22,6 +22,7 @@ npx create-react-router@latest --template remix-run/react-router-templates/cloud
 
 ### Tailwind
 - Vite config: https://tailwindcss.com/docs/installation/using-vite
+| Avoid color variables
 
 ### Components
 ```
