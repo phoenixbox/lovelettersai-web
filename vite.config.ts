@@ -12,15 +12,6 @@ export default defineConfig(({ isSsrBuild }) => ({
         }
       : undefined,
   },
-  ssr: {
-    target: 'webworker',
-    resolve: {
-      conditions: ['workerd', 'browser'],
-    },
-    optimizeDeps: {
-      include: ['react-dom/server', 'react-router'],
-    },
-  },
   plugins: [
     cloudflareDevProxy({
       getLoadContext({ context }) {
