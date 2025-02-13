@@ -41,7 +41,7 @@ function Hero() {
           <p className="mt-8 max-w-lg text-xl/7 font-medium text-gray-950/75 sm:text-2xl/8">
             {PRODUCT_TAGLINE}
           </p>
-          <div className="mt-6">{PRODUCT_VALUE}</div>
+          <div className="mt-6 text-gray-950">{PRODUCT_VALUE}</div>
         </div>
       </Container>
     </div>
@@ -50,7 +50,7 @@ function Hero() {
 
 export default function MarketingIndex() {
   return (
-    <div className="overflow-hidden bg-white dark:bg-slate-300">
+    <div className="overflow-hidden bg-white dark:bg-slate-50">
       <Hero />
     </div>
   )
