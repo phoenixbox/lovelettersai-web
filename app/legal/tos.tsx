@@ -8,7 +8,7 @@ export async function loader() {
 title: What is Markdoc?
 ---
 
-# {% $markdoc.frontmatter.title %} {% #overview %}
+# What is REPL Labs?
 
 Markdoc is a Markdown-based syntax and toolchain for creating custom documentation sites. Stripe created Markdoc to power [our public docs](http://stripe.com/docs).
 
