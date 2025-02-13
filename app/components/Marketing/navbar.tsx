@@ -75,7 +75,7 @@ export function Navbar({ banner }: { banner?: React.ReactNode }) {
                 className="flex flex-row items-center gap-2"
               >
                 <Logo className="flex-shrink-0" />
-                <div className="font-geist text-xl font-semibold tracking-tight text-white dark:text-black">
+                <div className="font-geist text-xl font-semibold tracking-tight text-black">
                   {PRODUCT_NAME}
                 </div>
               </Link>
@@ -86,8 +86,8 @@ export function Navbar({ banner }: { banner?: React.ReactNode }) {
               </div>
             )}
           </div>
-          <DesktopNav />
-          <MobileNavButton />
+          {/* <DesktopNav />
+          <MobileNavButton /> */}
         </PlusGridRow>
       </PlusGrid>
     </header>

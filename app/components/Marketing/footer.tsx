@@ -53,6 +53,7 @@ function Sitemap() {
         <SitemapHeading>Support</SitemapHeading>
         <SitemapLinks>
           <SitemapLink to="mailto:help@repllabs.com">Help</SitemapLink>
+          <SitemapLink to="mailto:contact@repllabs.com">Contact</SitemapLink>
         </SitemapLinks>
       </div>
       <div>
@@ -155,7 +156,7 @@ export function Footer({ children }: { children?: React.ReactNode }) {
                         className="flex flex-row items-center gap-2"
                       >
                         <Logo className="flex-shrink-0" />
-                        <div className="font-geist text-xl font-semibold tracking-tight text-white dark:text-black">
+                        <div className="font-geist text-xl font-semibold tracking-tight text-black">
                           {PRODUCT_NAME}
                         </div>
                       </Link>

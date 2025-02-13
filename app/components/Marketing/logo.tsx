@@ -7,7 +7,7 @@ export function Logo(props: React.SVGProps<SVGSVGElement>) {
       width={40}
       height={40}
       {...props}
-      className={cn(props.className, 'text-white dark:text-black')}
+      className={cn(props.className, 'text-black')}
     >
       <g clipPath="url(#a)">
         <path
