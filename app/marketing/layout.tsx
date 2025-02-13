@@ -1,11 +1,10 @@
 import { Outlet } from 'react-router'
 import { logLoader } from '~/lib/loader.server'
 import { Footer } from '~/components/Marketing/footer'
-
+import CallToAction from '~/components/Marketing/cta'
 export function loader() {
-  logLoader('_marketing (layout) ROOT')
-
-  return { message: 'Marketing layout' }
+  logLoader('marketing.layout')
+  return null
 }
 
 export default function MarketingLayout() {
@@ -14,7 +13,9 @@ export default function MarketingLayout() {
       <main>
         <Outlet />
       </main>
-      <Footer />
+      <Footer>
+        <CallToAction />
+      </Footer>
     </>
   )
 }

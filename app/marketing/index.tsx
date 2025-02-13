@@ -4,7 +4,6 @@ import { Container } from '~/components/Marketing/container'
 import { Gradient } from '~/components/Marketing/gradient'
 import { Link, type LoaderFunctionArgs } from 'react-router'
 import { Navbar } from '~/components/Marketing/navbar'
-import { buttonVariants } from '~/components/ui/button'
 import {
   PRODUCT_DESCRIPTION,
   PRODUCT_TAGLINE,
@@ -12,7 +11,7 @@ import {
 } from '~/const/copy'
 
 export async function loader({ context }: LoaderFunctionArgs) {
-  logLoader('_marketing.index')
+  logLoader('marketing.index')
 
   return {
     message: context.cloudflare.env.PUBLIC_ENV_VAR,

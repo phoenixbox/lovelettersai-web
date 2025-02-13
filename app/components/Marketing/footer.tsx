@@ -11,27 +11,6 @@ import { Subheading } from '~/components/Marketing/text'
 import { Logo } from './logo'
 import { PRODUCT_NAME, PRODUCT_VALUE } from '~/const/copy'
 
-function CallToAction() {
-  return (
-    <div className="relative pb-16 pt-20 text-center sm:py-24">
-      <hgroup>
-        <Subheading>Get started</Subheading>
-        <p className="mt-6 text-3xl font-medium tracking-tight text-gray-950 sm:text-5xl">
-          Ready to start?
-        </p>
-      </hgroup>
-      <p className="mx-auto mt-6 max-w-xs text-sm/6 text-gray-500">
-        {PRODUCT_VALUE}
-      </p>
-      {/* <div className="mt-6">
-        <Link to="/login" className={buttonVariants({ variant: 'default' })}>
-          Get started
-        </Link>
-      </div> */}
-    </div>
-  )
-}
-
 function SitemapHeading({ children }: { children: React.ReactNode }) {
   return <h3 className="text-sm/6 font-medium text-gray-950/50">{children}</h3>
 }
@@ -54,7 +33,7 @@ function SitemapLink(props: React.ComponentPropsWithoutRef<typeof Link>) {
 function Sitemap() {
   return (
     <>
-      <div>
+      {/* <div>
         <SitemapHeading>Product</SitemapHeading>
         <SitemapLinks>
           <SitemapLink to="/pricing">Pricing</SitemapLink>
@@ -69,19 +48,18 @@ function Sitemap() {
           <SitemapLink to="/blog">Blog</SitemapLink>
           <SitemapLink to="/company">Company</SitemapLink>
         </SitemapLinks>
-      </div>
+      </div> */}
       <div>
         <SitemapHeading>Support</SitemapHeading>
         <SitemapLinks>
-          <SitemapLink to="#">Help center</SitemapLink>
-          <SitemapLink to="#">Community</SitemapLink>
+          <SitemapLink to="mailto:help@repllabs.com">Help</SitemapLink>
         </SitemapLinks>
       </div>
       <div>
         <SitemapHeading>Company</SitemapHeading>
         <SitemapLinks>
-          <SitemapLink to="#">Terms of service</SitemapLink>
-          <SitemapLink to="#">Privacy policy</SitemapLink>
+          <SitemapLink to="/tos">Terms of service</SitemapLink>
+          <SitemapLink to="/privacy">Privacy policy</SitemapLink>
         </SitemapLinks>
       </div>
     </>
@@ -158,13 +136,13 @@ function Copyright() {
   )
 }
 
-export function Footer() {
+export function Footer({ children }: { children?: React.ReactNode }) {
   return (
     <footer>
       <Gradient className="relative">
         <div className="absolute inset-2 rounded-4xl bg-white/80" />
         <Container>
-          <CallToAction />
+          {children}
           <PlusGrid className="pb-16">
             <PlusGridRow>
               <div className="grid grid-cols-2 gap-y-10 pb-6 lg:grid-cols-6 lg:gap-8">
@@ -184,9 +162,9 @@ export function Footer() {
                     </div>
                   </PlusGridItem>
                 </div>
-                {/* <div className="col-span-2 grid grid-cols-2 gap-x-8 gap-y-12 lg:col-span-4 lg:grid-cols-subgrid lg:pt-6">
+                <div className="col-span-2 grid grid-cols-2 gap-x-8 gap-y-12 lg:col-span-4 lg:grid-cols-subgrid lg:pt-6">
                   <Sitemap />
-                </div> */}
+                </div>
               </div>
             </PlusGridRow>
             <PlusGridRow className="flex justify-between">
