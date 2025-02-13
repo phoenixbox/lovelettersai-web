@@ -2,28 +2,16 @@ import type { Route } from './+types/tos'
 import { parse } from '~/services/markdoc.server'
 import { Container } from '~/components/Marketing/container'
 import { Markdown } from '~/components/Markdown'
+import { TOS } from './tos.server'
 
 export async function loader() {
-  const MARKDOWN = `---
-title: What is Markdoc?
----
+  const MARKDOWN = [
+    `---
+title: REPL Labs Terms of Service
+---`,
+    TOS,
+  ].join('\n')
 
-# What is REPL Labs?
-
-Markdoc is a Markdown-based syntax and toolchain for creating custom documentation sites. Stripe created Markdoc to power [our public docs](http://stripe.com/docs).
-
-{% callout type="check" %}
-Markdoc is open-source—check out its [source](http://github.com/markdoc/markdoc) to see how it works.
-{% /callout %}
-
-## How is Markdoc different?
-
-Markdoc uses a fully declarative approach to composition and flow control, where other solutions… [Read more](/docs/overview).
-
-## Next steps
-- [Install Markdoc](/docs/getting-started)
-- [Explore the syntax](/docs/syntax)
-`
   return { content: parse(MARKDOWN) }
 }
 
