@@ -18,7 +18,7 @@ export default defineConfig(({ isSsrBuild }) => ({
       conditions: ['workerd', 'browser'],
     },
     optimizeDeps: {
-      include: ['react-dom/server'],
+      include: ['react-dom/server', 'react-router'],
     },
   },
   plugins: [
