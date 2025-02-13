@@ -7,7 +7,9 @@ import { Logo } from './logo'
 import { PlusGrid, PlusGridItem, PlusGridRow } from './plus-grid'
 import { PRODUCT_NAME } from '~/const/copy'
 
-const links = [{ href: '/login', label: 'Login' }]
+const links = [
+  // { href: '/login', label: 'Login' }
+]
 
 function DesktopNav() {
   return (

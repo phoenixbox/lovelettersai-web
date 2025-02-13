@@ -2,7 +2,7 @@ import type { Route } from './+types'
 import { logLoader } from '~/lib/loader.server'
 import { Container } from '~/components/Marketing/container'
 import { Gradient } from '~/components/Marketing/gradient'
-import { Link, type LoaderFunctionArgs } from 'react-router'
+import { type LoaderFunctionArgs } from 'react-router'
 import { Navbar } from '~/components/Marketing/navbar'
 import {
   PRODUCT_DESCRIPTION,
@@ -23,16 +23,7 @@ function Hero() {
     <div className="relative">
       <Gradient className="absolute inset-2 bottom-0 rounded-3xl ring-1 ring-inset ring-black/5" />
       <Container className="relative">
-        <Navbar
-          banner={
-            <Link
-              to="#"
-              className="flex items-center gap-1 rounded-full bg-orange-950/35 px-3 py-0.5 text-sm/6 font-medium text-white data-[hover]:bg-orange-950/30"
-            >
-              Alpha
-            </Link>
-          }
-        />
+        <Navbar />
         <div className="pb-24 pt-16 sm:pb-32 sm:pt-24 md:pb-48 md:pt-32">
           <h1 className="font-display text-balance text-6xl/[0.9] font-medium tracking-tighter text-gray-950 sm:text-8xl/[0.8] md:text-9xl/[0.8]">
             {PRODUCT_DESCRIPTION}
