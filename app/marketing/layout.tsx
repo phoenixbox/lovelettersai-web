@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router'
 import { logLoader } from '~/lib/loader.server'
+import { Footer } from '~/components/Marketing/footer'
 
 export function loader() {
   logLoader('_marketing (layout) ROOT')
@@ -13,6 +14,7 @@ export default function MarketingLayout() {
       <main>
         <Outlet />
       </main>
+      <Footer />
     </>
   )
 }

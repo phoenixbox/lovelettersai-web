@@ -52,6 +52,7 @@ export default function MarketingIndex() {
   return (
     <div className="overflow-hidden bg-white dark:bg-slate-50">
       <Hero />
+      <div className="h-96 w-full dark:bg-slate-950"></div>
     </div>
   )
 }

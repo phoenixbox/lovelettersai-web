@@ -23,11 +23,11 @@ function CallToAction() {
       <p className="mx-auto mt-6 max-w-xs text-sm/6 text-gray-500">
         {PRODUCT_VALUE}
       </p>
-      <div className="mt-6">
+      {/* <div className="mt-6">
         <Link to="/login" className={buttonVariants({ variant: 'default' })}>
           Get started
         </Link>
-      </div>
+      </div> */}
     </div>
   )
 }
@@ -177,7 +177,7 @@ export function Footer() {
                         className="flex flex-row items-center gap-2"
                       >
                         <Logo className="flex-shrink-0" />
-                        <div className="font-geist text-xl font-semibold tracking-tight">
+                        <div className="font-geist text-xl font-semibold tracking-tight text-white dark:text-black">
                           {PRODUCT_NAME}
                         </div>
                       </Link>
