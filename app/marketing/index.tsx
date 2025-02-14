@@ -29,12 +29,33 @@ export default function MarketingIndex() {
     <div className="min-h-screen w-full bg-gradient-to-b from-pink-50 to-red-50 flex flex-col items-center justify-center">
       <Toaster />
       <div
-        className="flex flex-col space-y-2 text-center"
+        className="flex flex-col space-y-12 text-center"
         style={{ fontFamily: 'Caveat' }}
       >
-        <div className="text-4xl text-gray-800 font-medium">LoveLettersAI</div>
-        <div className="text-2xl text-gray-600">
-          Send a real letter to someone you love.
+        <div className="flex flex-col">
+          <div className="text-6xl text-gray-800 font-medium">
+            LoveLettersAI
+          </div>
+          <div className="text-4xl text-gray-600">
+            Send a real letter to someone you love.
+          </div>
+        </div>
+        <div className="flex flex-col">
+          <div className="text-3xl text-gray-600">
+            Send us an email to get started.
+          </div>
+          <a
+            href={`mailto:${email}`}
+            className="md:hidden text-3xl text-gray-500 hover:text-red-500"
+          >
+            {email}
+          </a>
+          <a
+            href={gmailUrl}
+            className="hidden md:inline-block text-3xl text-gray-500 hover:text-red-500"
+          >
+            {email}
+          </a>
         </div>
       </div>
 
