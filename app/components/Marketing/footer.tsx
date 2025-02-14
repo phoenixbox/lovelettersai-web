@@ -141,14 +141,14 @@ export function Footer({ children }: { children?: React.ReactNode }) {
   return (
     <footer>
       <Gradient className="relative">
-        <div className="absolute inset-2 rounded-4xl bg-white/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-pink-50 to-red-50" />
         <Container>
           {children}
           <PlusGrid className="pb-16">
             <PlusGridRow>
               <div className="grid grid-cols-2 gap-y-10 pb-6 lg:grid-cols-6 lg:gap-8">
                 <div className="col-span-2 flex">
-                  <PlusGridItem className="pt-6 lg:pb-6">
+                  {/* <PlusGridItem className="pt-6 lg:pb-6">
                     <div className="flex flex-row items-center gap-2">
                       <Link
                         to="/"
@@ -161,7 +161,7 @@ export function Footer({ children }: { children?: React.ReactNode }) {
                         </div>
                       </Link>
                     </div>
-                  </PlusGridItem>
+                  </PlusGridItem> */}
                 </div>
                 <div className="col-span-2 grid grid-cols-2 gap-x-8 gap-y-12 lg:col-span-4 lg:grid-cols-subgrid lg:pt-6">
                   <Sitemap />

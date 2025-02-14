@@ -1,14 +1,5 @@
-import type { Route } from './+types'
 import { logLoader } from '~/lib/loader.server'
-import { Container } from '~/components/Marketing/container'
-import { Gradient } from '~/components/Marketing/gradient'
 import { type LoaderFunctionArgs } from 'react-router'
-import { Navbar } from '~/components/Marketing/navbar'
-import {
-  PRODUCT_DESCRIPTION,
-  PRODUCT_TAGLINE,
-  PRODUCT_VALUE,
-} from '~/const/copy'
 
 export async function loader({ context }: LoaderFunctionArgs) {
   logLoader('marketing.index')
@@ -18,31 +9,36 @@ export async function loader({ context }: LoaderFunctionArgs) {
   }
 }
 
-function Hero() {
-  return (
-    <div className="relative">
-      <Gradient className="absolute inset-2 bottom-0 rounded-3xl ring-1 ring-inset ring-black/5" />
-      <Container className="relative">
-        <Navbar />
-        <div className="pb-24 pt-16 sm:pb-32 sm:pt-24 md:pb-48 md:pt-32">
-          <h1 className="font-display text-balance text-6xl/[0.9] font-medium tracking-tighter text-gray-950 sm:text-8xl/[0.8] md:text-9xl/[0.8]">
-            {PRODUCT_DESCRIPTION}
-          </h1>
-          <p className="mt-8 max-w-lg text-xl/7 font-medium text-gray-950/75 sm:text-2xl/8">
-            {PRODUCT_TAGLINE}
-          </p>
-          <div className="mt-6 text-gray-950">{PRODUCT_VALUE}</div>
-        </div>
-      </Container>
-    </div>
-  )
-}
-
 export default function MarketingIndex() {
+  const email = 'cupid@lovelettersai.com'
+  const subject = 'Send a Letter'
+  const body = "Hi, I'd like to send a letter, can you help me with that"
+
+  // Corrected Gmail URL structure to properly open composer
+  const gmailUrl = `https://mail.google.com/mail/u/0/?view=cm&to=${email}&su=${encodeURIComponent(
+    subject
+  )}&body=${encodeURIComponent(body)}`
   return (
-    <div className="overflow-hidden bg-white dark:bg-slate-50">
-      <Hero />
-      <div className="h-96 w-full dark:bg-slate-950"></div>
+    <div className="min-h-screen w-full bg-gradient-to-b from-pink-50 to-red-50 flex flex-col items-center justify-center">
+      <div className="flex flex-col space-y-2 text-center">
+        <div className="text-2xl text-gray-500">LoveLettersAI</div>
+        <div className="text-2xl text-gray-500">
+          Send a real letter to someone you love.
+        </div>
+      </div>
+      <div className="animate-pulse">
+        <a
+          href={gmailUrl}
+          style={{
+            fontSize: '10rem',
+          }}
+          className="inline-block rounded-full bg-transparent px-6 py-3 text-sm font-medium text-white transition hover:scale-105"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          💌
+        </a>
+      </div>
     </div>
   )
 }

@@ -13,9 +13,7 @@ export default function MarketingLayout() {
       <main>
         <Outlet />
       </main>
-      <Footer>
-        <CallToAction />
-      </Footer>
+      <Footer />
     </>
   )
 }
