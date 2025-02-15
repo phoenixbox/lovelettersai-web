@@ -52,8 +52,10 @@ function Sitemap() {
       <div>
         <SitemapHeading>Support</SitemapHeading>
         <SitemapLinks>
-          <SitemapLink to="mailto:help@repllabs.com">Help</SitemapLink>
-          <SitemapLink to="mailto:contact@repllabs.com">Contact</SitemapLink>
+          <SitemapLink to="mailto:help@lovelettersai.com">Help</SitemapLink>
+          <SitemapLink to="mailto:support@lovelettersai.com">
+            Contact
+          </SitemapLink>
         </SitemapLinks>
       </div>
       <div>
