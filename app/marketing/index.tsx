@@ -37,8 +37,6 @@ const items = [
       'CeeCee is our AI agent who can help you get started. Send a quick “hi” to cupid@lovelettersai.com, and CeeCee will follow up with questions about your recipient and message. She can also handle payment and send the physical letter.',
     mailto: {
       email: 'cupid@lovelettersai.com',
-      subject: 'I want to send a letter',
-      body: 'Hi, I’d like to send a letter, can you help me with that?',
       url: getGmailLink(
         'cupid@lovelettersai.com',
         'I want to send a letter',
@@ -56,13 +54,14 @@ const items = [
     id: '5e974788-91b0-4730-97b5-dcdd09716fc6',
     title: 'Can I track the piece of mail?',
     content:
-      'No, we currently can’t provide tracking information for your letter. You can visit the USPS service standards map at https://postalpro.usps.com/ppro-tools/service-standards-maps, which includes links to other sites showing expected delivery times based on your mailing day for both domestic and international mail.',
+      'No, we currently can’t provide tracking information for your letter. You can visit the USPS service standards map, which includes links to other sites showing expected delivery times based on your mailing day for both domestic and international mail.',
+    url: 'https://postalpro.usps.com/ppro-tools/service-standards-maps',
   },
   {
     id: '925ad08a-dfef-4851-9f48-76970e734373',
     title: 'Can I send a letter internationally?',
-    content:
-      'Yes! We support all of the countries listed here: https://www.lob.com/global-address-coverage.',
+    content: 'Yes! We support all of the countries listed here:',
+    url: 'https://www.lob.com/global-address-coverage',
   },
   {
     id: '1ab8f3b8-7cae-4726-9e49-75fbf03a3c89',
@@ -85,17 +84,33 @@ const items = [
   {
     id: 'e7140ae3-3918-4703-a0d8-8795a8e7000c',
     title: 'How do I contact customer support?',
-    content: 'Send an email to support@lovelettersai.com.',
+    content: 'Send an email to:',
+    mailto: {
+      email: 'support@lovelettersai.com',
+      url: getGmailLink('support@lovelettersai.com', 'Customer support', ''),
+    },
   },
   {
     id: 'a2fc2d25-b601-4d5c-9d08-e957efc075bb',
     title: 'Notice a bug or issue?',
-    content: 'Let us know! Send an email to support@lovelettersai.com.',
+    content: 'Let us know! Send us an email',
+    mailto: {
+      email: 'support@lovelettersai.com',
+      url: getGmailLink('support@lovelettersai.com', 'Bug report or issue', ''),
+    },
   },
   {
     id: '32bb5b38-e125-4e8b-8b21-dc5f15ebb057',
     title: 'Have feedback or suggestions?',
-    content: 'Send an email to support@lovelettersai.com.',
+    content: 'Send an email to:',
+    mailto: {
+      email: 'support@lovelettersai.com',
+      url: getGmailLink(
+        'support@lovelettersai.com',
+        'Feedback or suggestions',
+        ''
+      ),
+    },
   },
   {
     id: '774764b3-1363-4161-a1fe-30b43af2ee38',
