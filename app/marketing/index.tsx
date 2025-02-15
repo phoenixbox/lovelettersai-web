@@ -55,13 +55,19 @@ const items = [
     title: 'Can I track the piece of mail?',
     content:
       'No, we currently can’t provide tracking information for your letter. You can visit the USPS service standards map, which includes links to other sites showing expected delivery times based on your mailing day for both domestic and international mail.',
-    url: 'https://postalpro.usps.com/ppro-tools/service-standards-maps',
+    link: {
+      label: 'USPS service standards map',
+      url: 'https://postalpro.usps.com/ppro-tools/service-standards-maps',
+    },
   },
   {
     id: '925ad08a-dfef-4851-9f48-76970e734373',
     title: 'Can I send a letter internationally?',
     content: 'Yes! We support all of the countries listed here:',
-    url: 'https://www.lob.com/global-address-coverage',
+    link: {
+      label: 'Lob global address coverage',
+      url: 'https://www.lob.com/global-address-coverage',
+    },
   },
   {
     id: '1ab8f3b8-7cae-4726-9e49-75fbf03a3c89',
@@ -139,13 +145,13 @@ function Section() {
             </AccordionPrimitive.Header>
             <AccordionContent className="pb-2 text-muted-foreground">
               {item.content}
-              {item.url ? (
+              {item.link ? (
                 <a
-                  href={item.url}
+                  href={item.link.url}
                   target="_blank"
                   className="pl-1 noopener noreferrer !text-blue-500 !underline"
                 >
-                  See example here
+                  {item.link.label}
                 </a>
               ) : null}
               {item.mailto ? (
