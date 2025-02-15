@@ -1,7 +1,5 @@
 import { logLoader } from '~/lib/loader.server'
 import { type LoaderFunctionArgs } from 'react-router'
-import { toast, Toaster } from 'sonner'
-import copy from 'copy-to-clipboard'
 import {
   Accordion,
   AccordionContent,
@@ -136,12 +134,20 @@ function Section() {
                 </a>
               ) : null}
               {item.mailto ? (
-                <a
-                  href={item.mailto.url || `mailto:${item.mailto.email}`}
-                  className="pl-1 noopener noreferrer !text-blue-500 !underline"
-                >
-                  {item.mailto.email}
-                </a>
+                <>
+                  <a
+                    href={`mailto:${item.mailto.email}`}
+                    className="md:hidden pl-1 noopener noreferrer !text-blue-500 !underline"
+                  >
+                    {item.mailto.email}
+                  </a>
+                  <a
+                    href={item.mailto.url || `mailto:${item.mailto.email}`}
+                    className="hidden md:inline-block pl-1 noopener noreferrer !text-blue-500 !underline"
+                  >
+                    {item.mailto.email}
+                  </a>
+                </>
               ) : null}
             </AccordionContent>
           </AccordionItem>
@@ -158,39 +164,33 @@ export default function MarketingIndex() {
 
   const gmailUrl = getGmailLink(email, subject, body)
 
-  const handleClick = () => {
-    copy(email)
-    toast('Email copied to clipboard')
-  }
-
   return (
     <div className="min-h-screen w-full bg-gradient-to-b from-pink-50 to-red-50 flex flex-col items-center">
-      <Toaster />
       <div
         className="flex flex-col space-y-12 text-center pt-12"
         style={{ fontFamily: 'Caveat' }}
       >
         <div className="flex flex-col">
-          <div className="text-6xl text-gray-800 font-medium">
+          <div className="text-4xl md:text-6xl text-gray-800 font-medium">
             LoveLettersAI
           </div>
-          <div className="text-4xl text-gray-600">
+          <div className="text-2xl md:text-4xl text-gray-600">
             Send a real letter to someone you love.
           </div>
         </div>
         <div className="flex flex-col">
-          <div className="text-3xl text-gray-600">
+          <div className="text-2xl md:text-3xl text-gray-600">
             Send us an email to get started.
           </div>
           <a
             href={`mailto:${email}`}
-            className="md:hidden text-3xl text-gray-500 hover:text-red-500"
+            className="md:hidden text-2xl md:text-3xl text-gray-500 hover:text-red-500"
           >
             {email}
           </a>
           <a
             href={gmailUrl}
-            className="hidden md:inline-block text-3xl text-gray-500 hover:text-red-500"
+            className="hidden md:inline-block text-2xl md:text-3xl text-gray-500 hover:text-red-500"
           >
             {email}
           </a>
@@ -198,12 +198,14 @@ export default function MarketingIndex() {
       </div>
 
       {/* Mobile version - Copy to clipboard */}
-      <button
-        onClick={handleClick}
-        className="md:hidden text-[10rem] animate-pulse transition hover:scale-105 focus:outline-none"
+      <a
+        href={`mailto:${email}`}
+        className="md:hidden  text-[10rem] animate-pulse transition hover:scale-105"
+        target="_blank"
+        rel="noopener noreferrer"
       >
         💌
-      </button>
+      </a>
 
       {/* Desktop version - Gmail link */}
       <a
