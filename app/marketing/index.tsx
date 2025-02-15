@@ -22,27 +22,27 @@ import { Plus } from 'lucide-react'
 const items = [
   {
     id: '7fe38374-6b60-4152-9537-e93cfa2c2ac8',
-    title: 'We send a real letter in the mail?',
+    title: 'Do you send a real letter in the mail?',
     content:
-      'Yes, your letter will be printed on real paper and sent to your recipient via USPS First Class Mail. Mail is usually nothing but bad news, bills, taxes and spam. CeeCee makes this piece of mail more meaningful.',
+      'Yes, your letter will be printed on real paper and sent via USPS First Class Mail. Mail is usually nothing but bad news, bills, taxes, and spam, but our AI agent CeeCee makes this piece of mail fun and meaningful.',
   },
   {
     id: '90d1f359-1dd2-42c8-972e-374373381e94',
     title: 'How do I get started?',
     content:
-      "CeeCee is our AI agent who will help you get started. Send a simple note like 'hi' to cupid@lovelettersai.com and she will respond with a few questions to help you get started. CeeCee can also prepare your order including settling payment and sending the physical letter.",
+      'CeeCee is our AI agent who can help you get started. Send a quick “hi” to cupid@lovelettersai.com, and CeeCee will follow up with questions about your recipient and message. She can also handle payment and send the physical letter.',
   },
   {
     id: 'fa9f51f7-6e83-473b-976d-e13c92eece56',
     title: 'How long does letter delivery take?',
     content:
-      'USPS First Class Mail usually takes 3-5 business days to deliver.',
+      'Letters are sent via USPS First Class Mail. Domestic mailings typically take 4-6 business days, and international mailings typically take an additional 5-7 business days to be delivered',
   },
   {
     id: '5e974788-91b0-4730-97b5-dcdd09716fc6',
     title: 'Can I track the piece of mail?',
     content:
-      'No, we are not able to offer tracking numbers for your letters currently.',
+      'No, we currently can’t provide tracking information for your letter. You can visit the USPS service standards map at https://postalpro.usps.com/ppro-tools/service-standards-maps, which includes links to other sites showing expected delivery times based on your mailing day for both domestic and international mail.',
   },
   {
     id: '925ad08a-dfef-4851-9f48-76970e734373',
@@ -54,7 +54,7 @@ const items = [
     id: '1ab8f3b8-7cae-4726-9e49-75fbf03a3c89',
     title: 'How do payments work?',
     content:
-      'Once you have confirmed your order with CeeCee over email she will send you a payment link to checkout using Stripe. Once the payment is confirmed, your order will be processed and your letter will be sent via USPS First Class Mail. All sales are final and we do not offer refunds.',
+      'Once you confirm your order with CeeCee via email, she’ll send you a Stripe payment link. After your payment is complete, we’ll process your order and send your letter via USPS First Class Mail. All sales are final, and we do not offer refunds.',
   },
   {
     id: '7cd48416-46c3-4f45-b26f-eb93bcb2ba42',
@@ -66,11 +66,16 @@ const items = [
     title: 'How do I contact customer support?',
     content: 'Send an email to support@lovelettersai.com.',
   },
+  {
+    id: '774764b3-1363-4161-a1fe-30b43af2ee38',
+    title: 'Is this cool?',
+    content: 'Yes, it is cool.',
+  },
 ]
 
 function Section() {
   return (
-    <div className="space-y-4 bg-white p-4 rounded-lg text-gray-800 shadow-md max-w-2xl w-full">
+    <div className="space-y-4 bg-white p-4 rounded-lg text-gray-800 shadow-md max-w-2xl w-full font-sans">
       <h2 className="text-xl font-bold">How it works</h2>
       <Accordion type="single" collapsible className="w-full" defaultValue="3">
         {items.map((item) => (
@@ -113,7 +118,10 @@ export default function MarketingIndex() {
   return (
     <div className="min-h-screen w-full bg-gradient-to-b from-pink-50 to-red-50 flex flex-col items-center">
       <Toaster />
-      <div className="flex flex-col space-y-12 text-center pt-12">
+      <div
+        className="flex flex-col space-y-12 text-center pt-12"
+        style={{ fontFamily: 'Caveat' }}
+      >
         <div className="flex flex-col">
           <div className="text-6xl text-gray-800 font-medium">
             LoveLettersAI
