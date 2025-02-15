@@ -62,6 +62,13 @@ const items = [
     content: 'No all sales are final and we do not offer refunds.',
   },
   {
+    id: '3dcb8eba-0578-4fca-b264-5ac27177bb23',
+    title: 'What does the letter look like?',
+    content:
+      'The note you confirm with CeeCee over email will be inserted into our letter template which looks like this.',
+    url: 'https://lob-assets.com/letters/ltr_70bb8e1b642e80f9.pdf?version=v1&expires=1742188938&signature=N0kSmPf2ADV3_JR71G6A16AJhUy8XraRbqzAdCwuS6rRxz38fHxMtEFblTMBUypslVUbFSD6g8AKr1TCWyV-CQ',
+  },
+  {
     id: 'e7140ae3-3918-4703-a0d8-8795a8e7000c',
     title: 'How do I contact customer support?',
     content: 'Send an email to support@lovelettersai.com.',
@@ -69,7 +76,7 @@ const items = [
   {
     id: '774764b3-1363-4161-a1fe-30b43af2ee38',
     title: 'Is this cool?',
-    content: 'Yes, it is cool.',
+    content: 'Yes, this is cool.',
   },
 ]
 
@@ -93,6 +100,15 @@ function Section() {
             </AccordionPrimitive.Header>
             <AccordionContent className="pb-2 text-muted-foreground">
               {item.content}
+              {item.url && (
+                <a
+                  href={item.url}
+                  target="_blank"
+                  className="pl-1 noopener noreferrer !text-blue-500 !underline"
+                >
+                  See example here
+                </a>
+              )}
             </AccordionContent>
           </AccordionItem>
         ))}
