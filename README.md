@@ -1,4 +1,4 @@
-# REPLabs Site
+# RevCobe Site
 
 ## Setup
 
@@ -28,7 +28,7 @@ npx create-react-router@latest --template remix-run/react-router-templates/cloud
 
 ```
 routes = [
-  { pattern = "repllabs.com", custom_domain = true }
+  { pattern = "revcobe.com", custom_domain = true }
 ]
 ```
 
@@ -37,7 +37,7 @@ routes = [
 ```
 "build": "react-router build",
 "deploy": "npm run build && wrangler deploy && npm run tail",
-"tail": "wrangler tail repllabs",
+"tail": "wrangler tail revcobe",
 ```
 
 ### Tailwind
