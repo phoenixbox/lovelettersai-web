@@ -13,6 +13,12 @@ function getGmailLink(email: string, subject: string, body: string) {
   )}&body=${encodeURIComponent(body)}`
 }
 
+function getMailtoLink(email: string, subject: string, body: string) {
+  return `mailto:${email}?subject=${encodeURIComponent(
+    subject
+  )}&body=${encodeURIComponent(body)}`
+}
+
 export async function loader({ context }: LoaderFunctionArgs) {
   logLoader('marketing.index')
 
@@ -37,7 +43,12 @@ const items = [
       'CeeCee is our AI agent who can help you get started. Send a quick “hi” to cupid@lovelettersai.com, and CeeCee will follow up with questions about your recipient and message. She can also handle payment and send the physical letter.',
     mailto: {
       email: 'cupid@lovelettersai.com',
-      url: getGmailLink(
+      mobile: getMailtoLink(
+        'cupid@lovelettersai.com',
+        'I want to send a letter',
+        'Hi, I’d like to send a letter, can you help me with that?'
+      ),
+      desktop: getGmailLink(
         'cupid@lovelettersai.com',
         'I want to send a letter',
         'Hi, I’d like to send a letter, can you help me with that?'
@@ -93,7 +104,16 @@ const items = [
     content: 'Send an email to:',
     mailto: {
       email: 'support@lovelettersai.com',
-      url: getGmailLink('support@lovelettersai.com', 'Customer support', ''),
+      mobile: getMailtoLink(
+        'support@lovelettersai.com',
+        'Customer support',
+        ''
+      ),
+      desktop: getGmailLink(
+        'support@lovelettersai.com',
+        'Customer support',
+        ''
+      ),
     },
   },
   {
@@ -102,7 +122,16 @@ const items = [
     content: 'Let us know! Send us an email',
     mailto: {
       email: 'support@lovelettersai.com',
-      url: getGmailLink('support@lovelettersai.com', 'Bug report or issue', ''),
+      mobile: getMailtoLink(
+        'support@lovelettersai.com',
+        'Bug report or issue',
+        ''
+      ),
+      desktop: getGmailLink(
+        'support@lovelettersai.com',
+        'Bug report or issue',
+        ''
+      ),
     },
   },
   {
@@ -111,7 +140,12 @@ const items = [
     content: 'Send an email to:',
     mailto: {
       email: 'support@lovelettersai.com',
-      url: getGmailLink(
+      mobile: getMailtoLink(
+        'support@lovelettersai.com',
+        'Feedback or suggestions',
+        ''
+      ),
+      desktop: getGmailLink(
         'support@lovelettersai.com',
         'Feedback or suggestions',
         ''
@@ -157,13 +191,13 @@ function Section() {
               {item.mailto ? (
                 <>
                   <a
-                    href={`mailto:${item.mailto.email}`}
+                    href={item.mailto.mobile}
                     className="md:hidden pl-1 noopener noreferrer !text-blue-500 !underline"
                   >
                     {item.mailto.email}
                   </a>
                   <a
-                    href={item.mailto.url || `mailto:${item.mailto.email}`}
+                    href={item.mailto.desktop}
                     className="hidden md:inline-block pl-1 noopener noreferrer !text-blue-500 !underline"
                   >
                     {item.mailto.email}
