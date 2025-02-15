@@ -9,6 +9,12 @@ import {
 } from '~/components/ui/accordion'
 import * as AccordionPrimitive from '@radix-ui/react-accordion'
 
+function getGmailLink(email: string, subject: string, body: string) {
+  return `https://mail.google.com/mail/u/0/?view=cm&to=${email}&su=${encodeURIComponent(
+    subject
+  )}&body=${encodeURIComponent(body)}`
+}
+
 export async function loader({ context }: LoaderFunctionArgs) {
   logLoader('marketing.index')
 
@@ -31,6 +37,16 @@ const items = [
     title: 'How do I get started?',
     content:
       'CeeCee is our AI agent who can help you get started. Send a quick “hi” to cupid@lovelettersai.com, and CeeCee will follow up with questions about your recipient and message. She can also handle payment and send the physical letter.',
+    mailto: {
+      email: 'cupid@lovelettersai.com',
+      subject: 'I want to send a letter',
+      body: 'Hi, I’d like to send a letter, can you help me with that?',
+      url: getGmailLink(
+        'cupid@lovelettersai.com',
+        'I want to send a letter',
+        'Hi, I’d like to send a letter, can you help me with that?'
+      ),
+    },
   },
   {
     id: 'fa9f51f7-6e83-473b-976d-e13c92eece56',
@@ -74,6 +90,16 @@ const items = [
     content: 'Send an email to support@lovelettersai.com.',
   },
   {
+    id: 'a2fc2d25-b601-4d5c-9d08-e957efc075bb',
+    title: 'Notice a bug or issue?',
+    content: 'Let us know! Send an email to support@lovelettersai.com.',
+  },
+  {
+    id: '32bb5b38-e125-4e8b-8b21-dc5f15ebb057',
+    title: 'Have feedback or suggestions?',
+    content: 'Send an email to support@lovelettersai.com.',
+  },
+  {
     id: '774764b3-1363-4161-a1fe-30b43af2ee38',
     title: 'Is this cool?',
     content: 'Yes, this is cool.',
@@ -100,7 +126,7 @@ function Section() {
             </AccordionPrimitive.Header>
             <AccordionContent className="pb-2 text-muted-foreground">
               {item.content}
-              {item.url && (
+              {item.url ? (
                 <a
                   href={item.url}
                   target="_blank"
@@ -108,7 +134,15 @@ function Section() {
                 >
                   See example here
                 </a>
-              )}
+              ) : null}
+              {item.mailto ? (
+                <a
+                  href={item.mailto.url || `mailto:${item.mailto.email}`}
+                  className="pl-1 noopener noreferrer !text-blue-500 !underline"
+                >
+                  {item.mailto.email}
+                </a>
+              ) : null}
             </AccordionContent>
           </AccordionItem>
         ))}
@@ -122,9 +156,7 @@ export default function MarketingIndex() {
   const subject = 'Send a Real Letter'
   const body = "Hi, I'd like to send a real letter, can you help me with that?"
 
-  const gmailUrl = `https://mail.google.com/mail/u/0/?view=cm&to=${email}&su=${encodeURIComponent(
-    subject
-  )}&body=${encodeURIComponent(body)}`
+  const gmailUrl = getGmailLink(email, subject, body)
 
   const handleClick = () => {
     copy(email)
