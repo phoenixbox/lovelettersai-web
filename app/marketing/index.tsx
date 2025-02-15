@@ -107,7 +107,7 @@ const items = [
 function Section() {
   return (
     <div className="space-y-4 bg-white p-4 rounded-lg text-gray-800 shadow-md max-w-2xl w-full font-sans">
-      <h2 className="text-xl font-bold">How it works</h2>
+      <h2 className="text-xl font-bold pt-2">How it works</h2>
       <Accordion type="single" collapsible className="w-full" defaultValue="3">
         {items.map((item) => (
           <AccordionItem value={item.id} key={item.id} className="py-2">
