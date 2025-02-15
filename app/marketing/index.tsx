@@ -110,11 +110,19 @@ const useGlobeStore = create<GlobeState>((set) => ({
     }),
 }))
 
+/**
+ * RESTART
+ * Add interactivity on the click to go
+ * https://github.com/shuding/cobe/blob/main/website/pages/docs/showcases/rotate-to-location.mdx?plain=1
+ *
+ * Also maybe make it full screen and layer controls so theres no clipping
+ * - Just like the bounding box extractor
+ */
 const Cobe = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const globeRef = useRef<ReturnType<typeof createGlobe> | null>(null)
   const phiRef = useRef(0)
-  const renderFrameRef = useRef<number>()
+  const renderFrameRef = useRef<number>(0)
 
   const store = useGlobeStore()
 
