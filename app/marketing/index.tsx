@@ -215,7 +215,8 @@ function Section() {
 export default function MarketingIndex() {
   const email = 'cupid@lovelettersai.com'
   const subject = 'Send a Real Letter'
-  const body = "Hi, I'd like to send a real letter, can you help me with that?"
+  const body =
+    "Hi CeeCee, I'd like to send a real letter, can you help me with that?"
 
   const gmailUrl = getGmailLink(email, subject, body)
   const mailtoUrl = getMailtoLink(email, subject, body)
