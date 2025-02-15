@@ -218,7 +218,7 @@ export default function MarketingIndex() {
   const body = "Hi, I'd like to send a real letter, can you help me with that?"
 
   const gmailUrl = getGmailLink(email, subject, body)
-
+  const mailtoUrl = getMailtoLink(email, subject, body)
   return (
     <div className="min-h-screen w-full bg-gradient-to-b from-pink-50 to-red-50 flex flex-col items-center">
       <div
@@ -238,7 +238,7 @@ export default function MarketingIndex() {
             Send us an email to get started.
           </div>
           <a
-            href={`mailto:${email}`}
+            href={mailtoUrl}
             className="md:hidden text-2xl md:text-3xl text-gray-500 hover:text-red-500"
           >
             {email}
@@ -254,7 +254,7 @@ export default function MarketingIndex() {
 
       {/* Mobile version - Copy to clipboard */}
       <a
-        href={`mailto:${email}`}
+        href={mailtoUrl}
         className="md:hidden  text-[10rem] animate-pulse transition hover:scale-105"
         target="_blank"
         rel="noopener noreferrer"
