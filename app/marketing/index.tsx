@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
 import { create } from 'zustand'
 import createGlobe from 'cobe'
 import { Button } from '~/components/ui/button'
@@ -112,101 +112,128 @@ const useGlobeStore = create<GlobeState>((set) => ({
 
 const Cobe = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const {
-    isRotating,
-    phi,
-    theta,
-    scale,
-    dark,
-    diffuse,
-    mapBrightness,
-    payments,
-    markersVisible,
-    selectedPayment,
-    rotationSpeed,
-    selectedCurrencies,
-    minAmount,
-    maxAmount,
-    setPhi,
-  } = useGlobeStore()
+  const globeRef = useRef<ReturnType<typeof createGlobe> | null>(null)
+  const phiRef = useRef(0)
+  const renderFrameRef = useRef<number>()
 
-  // Filter payments based on current filters
-  const filteredPayments = payments.filter((payment) => {
-    if (
-      selectedCurrencies.length &&
-      !selectedCurrencies.includes(payment.currency)
-    )
-      return false
-    if (minAmount && payment.amount < minAmount) return false
-    if (maxAmount && payment.amount > maxAmount) return false
-    return true
-  })
+  const store = useGlobeStore()
 
-  useEffect(() => {
-    let currentPhi = phi
-    let globe: ReturnType<typeof createGlobe> | null = null
+  // Memoize marker creation to prevent unnecessary recalculation
+  const createMarkers = useCallback(() => {
+    if (!store.markersVisible) return []
 
-    if (canvasRef.current) {
-      const filteredMarkers = markersVisible
-        ? filteredPayments.map((payment) => ({
-            location: [
-              payment.address.coordinates.latitude,
-              payment.address.coordinates.longitude,
-            ],
-            size: calculateMarkerSize(payment.amount),
-            color:
-              selectedPayment?.id === payment.id
-                ? [1, 0.8, 0.1] // Highlight selected payment
-                : undefined,
-          }))
-        : []
-
-      globe = createGlobe(canvasRef.current, {
-        ...DEFAULT_GLOBE_CONFIG,
-        devicePixelRatio: 2,
-        width: 600 * 2,
-        height: 600 * 2,
-        phi,
-        theta,
-        dark,
-        diffuse,
-        mapBrightness,
-        scale,
-        baseColor: [0.3, 0.3, 0.3],
-        markerColor: [0.1, 0.8, 1],
-        glowColor: [1, 1, 1],
-        markers: filteredMarkers,
-        onRender: (state) => {
-          state.phi = currentPhi
-          if (isRotating) {
-            currentPhi += rotationSpeed
-            setPhi(currentPhi)
-          }
-        },
+    return store.payments
+      .filter((payment) => {
+        if (
+          store.selectedCurrencies.length &&
+          !store.selectedCurrencies.includes(payment.currency)
+        )
+          return false
+        if (store.minAmount && payment.amount < store.minAmount) return false
+        if (store.maxAmount && payment.amount > store.maxAmount) return false
+        return true
       })
+      .map((payment) => ({
+        location: [
+          payment.address.coordinates.latitude,
+          payment.address.coordinates.longitude,
+        ],
+        size: calculateMarkerSize(payment.amount),
+        color:
+          store.selectedPayment?.id === payment.id ? [1, 0.8, 0.1] : undefined,
+      }))
+  }, [
+    store.payments,
+    store.markersVisible,
+    store.selectedCurrencies,
+    store.minAmount,
+    store.maxAmount,
+    store.selectedPayment,
+  ])
+
+  const createGlobeInstance = useCallback(() => {
+    if (!canvasRef.current) return
+
+    // Cleanup previous instance
+    if (globeRef.current) {
+      globeRef.current.destroy()
     }
 
-    return () => {
-      globe?.destroy()
-    }
+    // Create new instance
+    globeRef.current = createGlobe(canvasRef.current, {
+      ...DEFAULT_GLOBE_CONFIG,
+      devicePixelRatio: 2,
+      width: 600 * 2,
+      height: 600 * 2,
+      phi: phiRef.current,
+      theta: store.theta,
+      dark: store.dark,
+      diffuse: store.diffuse,
+      mapBrightness: store.mapBrightness,
+      scale: store.scale,
+      baseColor: [0.3, 0.3, 0.3],
+      markerColor: [0.1, 0.8, 1],
+      glowColor: [1, 1, 1],
+      markers: createMarkers(),
+      onRender: (state) => {
+        state.phi = phiRef.current
+        if (store.isRotating) {
+          phiRef.current += store.rotationSpeed
+          store.setPhi(phiRef.current)
+        }
+      },
+    })
   }, [
-    canvasRef,
-    isRotating,
-    theta,
-    dark,
-    diffuse,
-    mapBrightness,
-    scale,
-    markersVisible,
-    filteredPayments.length,
-    selectedPayment,
-    rotationSpeed,
+    store.theta,
+    store.dark,
+    store.diffuse,
+    store.mapBrightness,
+    store.scale,
+    store.isRotating,
+    store.rotationSpeed,
+    createMarkers,
   ])
+
+  // Initial setup
+  useEffect(() => {
+    createGlobeInstance()
+    return () => {
+      if (renderFrameRef.current) {
+        cancelAnimationFrame(renderFrameRef.current)
+      }
+      if (globeRef.current) {
+        globeRef.current.destroy()
+      }
+    }
+  }, [createGlobeInstance])
+
+  // Synchronize phi with store
+  useEffect(() => {
+    phiRef.current = store.phi
+  }, [store.phi])
+
+  // Handle canvas resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (!canvasRef.current) return
+      createGlobeInstance()
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [createGlobeInstance])
 
   return (
     <canvas
       ref={canvasRef}
-      style={{ width: 600, height: 600, maxWidth: '100%', aspectRatio: 1 }}
+      style={{
+        width: 600,
+        height: 600,
+        maxWidth: '100%',
+        aspectRatio: 1,
+        opacity: globeRef.current ? 1 : 0,
+        transition: 'opacity 0.5s ease',
+      }}
     />
   )
 }
