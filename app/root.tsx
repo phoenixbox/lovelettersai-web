@@ -6,7 +6,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from 'react-router'
-
+import { NuqsAdapter } from 'nuqs/adapters/react-router/v7'
 import type { Route } from './+types/root'
 import './app.css'
 
@@ -43,7 +43,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         ></link>
       </head>
       <body>
-        {children}
+        <NuqsAdapter>{children}</NuqsAdapter>
         <ScrollRestoration />
         <Scripts />
       </body>

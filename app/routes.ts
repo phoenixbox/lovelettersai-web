@@ -11,4 +11,5 @@ export default [
     route('tos', './legal/tos.tsx'),
     route('privacy', './legal/privacy.tsx'),
   ]),
+  layout('./app/layout.tsx', [route('data', './app/data.tsx')]),
 ] satisfies RouteConfig
