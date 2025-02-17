@@ -1,4 +1,5 @@
 import {
+  createLoader,
   createParser,
   // createSearchParamsCache,
   createSerializer,
@@ -59,5 +60,7 @@ export const searchParamsParser = {
 // export const searchParamsCache = createSearchParamsCache(searchParamsParser)
 
 export const searchParamsSerializer = createSerializer(searchParamsParser)
+
+export const loadSearchParams = createLoader(searchParamsParser)
 
 export type SearchParamsType = inferParserType<typeof searchParamsParser>

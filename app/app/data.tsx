@@ -8,7 +8,7 @@ export async function loader() {
   return null
 }
 
-export default function PrivacyIndex({
+export default function DataIndex({
   loaderData,
 }: {
   loaderData: Route.ComponentProps

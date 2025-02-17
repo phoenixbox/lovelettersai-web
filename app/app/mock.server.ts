@@ -1,5 +1,5 @@
 import { METHODS } from '~/const/method'
-import type { ColumnSchema } from './schema'
+import type { ColumnSchema } from '~/app/schema'
 import { subMinutes } from 'date-fns'
 import { REGIONS } from '~/const/region'
 

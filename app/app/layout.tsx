@@ -1,10 +1,6 @@
 import type { Route } from './+types/root'
-import { Outlet, type LoaderFunctionArgs } from 'react-router'
+import { type LoaderFunctionArgs } from 'react-router'
 import { logLoader } from '~/lib/loader.server'
-import { Footer } from '~/components/Marketing/footer'
-import { Container } from '~/components/Marketing/container'
-import { Navbar } from '~/components/Marketing/navbar'
-// import { searchParamsCache } from '~/lib/search.server'
 import { mock } from './mock.server'
 import {
   filterData,
@@ -21,7 +17,15 @@ import {
 } from '~/lib/request/percentile'
 import qs from 'qs'
 
-import type { ColumnSchema, FacetMetadataSchema } from './schema'
+import type { ColumnSchema, FacetMetadataSchema } from '~/app/schema'
+import { Client } from '~/components/InfiniteDataTable/client'
+
+// Describe your search params, and reuse this in useQueryStates / createSerializer:
+// export const coordinatesSearchParams = {
+//   uuid: parseAsString,
+// }
+
+// const loadSearchParams = createLoader(coordinatesSearchParams)
 
 interface SearchParams {
   date?: string[] | string
@@ -52,9 +56,26 @@ export async function loader(props: LoaderFunctionArgs) {
 
   const totalData = mock
 
+  interface SearchParams {
+    date?: string[] | string
+    start?: number
+    size?: number
+    sort?: string
+    // Add other expected query parameters here
+  }
+
+  interface ParsedSearchParams extends Omit<SearchParams, 'date'> {
+    date?: [Date, Date] | null
+  }
+
+  // const searchParams = loadSearchParams(props.request)
+  // console.log('-------  searchParams:', searchParams)
+
+  /**
+   * Maybe pull to common location
+   */
   // Parse search params with qs, providing type information
   const url = new URL(props.request.url)
-
   // Parse search params with qs, providing type information
   const search = qs.parse(url.search.substring(1), {
     arrayLimit: 10,
@@ -144,19 +165,6 @@ export async function loader(props: LoaderFunctionArgs) {
   }
 }
 
-export default function AppLayout(props: { loaderData: Route.ComponentProps }) {
-  console.log('-------  loaderData:', props.loaderData)
-  return (
-    <>
-      <div className="overflow-hidden bg-white dark:bg-slate-50">
-        <Container className="relative">
-          <Navbar />
-        </Container>
-        <main>
-          <Outlet />
-        </main>
-        <Footer />
-      </div>
-    </>
-  )
+export default function AppLayout() {
+  return <Client />
 }
