@@ -234,6 +234,19 @@ export function DataTableInfinite<TData, TValue, TMeta>({
   }, [rowSelection, selectedRow, isLoading, isFetching])
 
   /**
+   * RESTART:
+   * - we should render the frame with suspense loaders? and then client side load?
+   * -- we dont want sticky slow loads
+   * - whats the best way to do client and server side loading
+   * - also when do we trigger a fetch for new data?
+   *
+   * - we shuold have a project for react-router data fetching where we have docs around
+   * -- suspense
+   * -- loaderData props
+   * -- useRouteLoaderData etc
+   */
+
+  /**
    * https://tanstack.com/table/v8/docs/guide/column-sizing#advanced-column-resizing-performance
    * Instead of calling `column.getSize()` on every render for every header
    * and especially every data cell (very expensive),
