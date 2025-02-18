@@ -27,6 +27,36 @@ export async function loader({ context }: LoaderFunctionArgs) {
   }
 }
 
+export const meta: MetaFunction = () => {
+  const title = 'Love Letters AI'
+  const description = 'Send a real letter to someone you love.'
+  const image = 'https://lovelettersai.com/og/og_image.png'
+
+  return [
+    { title },
+    { name: 'description', content: description },
+
+    // Open Graph
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: 'https://lovelettersai.com' },
+    { property: 'og:title', content: title },
+    { property: 'og:description', content: description },
+    { property: 'og:image', content: image },
+    { property: 'og:image:width', content: '1200' },
+    { property: 'og:image:height', content: '630' },
+
+    // Twitter
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: title },
+    { name: 'twitter:description', content: description },
+    { name: 'twitter:image', content: image },
+
+    // Additional SEO tags
+    { name: 'viewport', content: 'width=device-width,initial-scale=1' },
+    { property: 'og:locale', content: 'en_US' },
+  ]
+}
+
 import { Plus } from 'lucide-react'
 
 const items = [
@@ -96,7 +126,10 @@ const items = [
     title: 'What does the letter look like?',
     content:
       'The note you confirm with CeeCee over email will be inserted into our letter template which looks like this.',
-    url: 'https://lob-assets.com/letters/ltr_70bb8e1b642e80f9.pdf?version=v1&expires=1742188938&signature=N0kSmPf2ADV3_JR71G6A16AJhUy8XraRbqzAdCwuS6rRxz38fHxMtEFblTMBUypslVUbFSD6g8AKr1TCWyV-CQ',
+    link: {
+      label: 'Preview.',
+      url: 'https://lob-assets.com/letters/ltr_70bb8e1b642e80f9.pdf?version=v1&expires=1742188938&signature=N0kSmPf2ADV3_JR71G6A16AJhUy8XraRbqzAdCwuS6rRxz38fHxMtEFblTMBUypslVUbFSD6g8AKr1TCWyV-CQ',
+    },
   },
   {
     id: 'e7140ae3-3918-4703-a0d8-8795a8e7000c',
