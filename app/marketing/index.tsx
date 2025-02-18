@@ -269,7 +269,7 @@ export default function MarketingIndex() {
         </div>
         <div className="flex flex-col">
           <div className="text-2xl md:text-3xl text-gray-600">
-            Send us an email to get started.
+            Send our agent an email to get started.
           </div>
           <a
             href={mailtoUrl}
