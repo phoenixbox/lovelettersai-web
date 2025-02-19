@@ -70,7 +70,7 @@ const items = [
     id: '90d1f359-1dd2-42c8-972e-374373381e94',
     title: 'How do I get started?',
     content:
-      'CeeCee is our AI agent who can help you get started. Send a quick “hi” to cupid@lovelettersai.com, and CeeCee will follow up with questions about your recipient and message. She can also handle payment and send the physical letter.',
+      "CeeCee is our AI agent who can help you get started! Send a quick 'hi' to cupid@lovelettersai.com, and she will follow up with questions about your recipient and message. CeeCee can also handle payment and send the physical letter.",
     mailto: {
       email: 'cupid@lovelettersai.com',
       mobile: getMailtoLink(
