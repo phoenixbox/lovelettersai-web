@@ -86,6 +86,12 @@ const items = [
     },
   },
   {
+    id: '75b605ca-cdff-4619-af47-4579ff729ef1',
+    title: 'It only costs $5?',
+    content:
+      'Yes! We have a flat rate of $5 for both domestic and international mail, so start sending letters to friends and family, near or far! 💌',
+  },
+  {
     id: 'fa9f51f7-6e83-473b-976d-e13c92eece56',
     title: 'How long does letter delivery take?',
     content:
