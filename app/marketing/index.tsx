@@ -1,11 +1,16 @@
 import { logLoader } from '~/lib/loader.server'
-import { type LoaderFunctionArgs } from 'react-router'
+import { type LoaderFunctionArgs, type MetaFunction } from 'react-router'
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
 } from '~/components/ui/accordion'
 import * as AccordionPrimitive from '@radix-ui/react-accordion'
+
+const DOMAIN = 'lovelettersai.com'
+const SITE_URL = `https://${DOMAIN}`
+const CUPID_EMAIL = `cupid@${DOMAIN}`
+const SUPPORT_EMAIL = `support@${DOMAIN}`
 
 function getGmailLink(email: string, subject: string, body: string) {
   return `https://mail.google.com/mail/u/0/?view=cm&to=${email}&su=${encodeURIComponent(
@@ -30,7 +35,7 @@ export async function loader({ context }: LoaderFunctionArgs) {
 export const meta: MetaFunction = () => {
   const title = 'Love Letters AI'
   const description = 'Send a real letter to someone you love.'
-  const image = 'https://lovelettersai.com/og/og_image.png'
+  const image = `${DOMAIN}/og/og_image.png`
 
   return [
     { title },
@@ -38,7 +43,7 @@ export const meta: MetaFunction = () => {
 
     // Open Graph
     { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: 'https://lovelettersai.com' },
+    { property: 'og:url', content: SITE_URL },
     { property: 'og:title', content: title },
     { property: 'og:description', content: description },
     { property: 'og:image', content: image },
@@ -72,14 +77,14 @@ const items = [
     content:
       "CeeCee is our AI agent who can help you get started! Send a quick 'hi' to cupid@lovelettersai.com, and she will follow up with questions about your recipient and message. CeeCee can also handle payment and send the physical letter.",
     mailto: {
-      email: 'cupid@lovelettersai.com',
+      email: CUPID_EMAIL,
       mobile: getMailtoLink(
-        'cupid@lovelettersai.com',
+        CUPID_EMAIL,
         'I want to send a letter',
         'Hi, I’d like to send a letter, can you help me with that?'
       ),
       desktop: getGmailLink(
-        'cupid@lovelettersai.com',
+        CUPID_EMAIL,
         'I want to send a letter',
         'Hi, I’d like to send a letter, can you help me with that?'
       ),
@@ -142,17 +147,9 @@ const items = [
     title: 'How do I contact customer support?',
     content: 'Send an email to:',
     mailto: {
-      email: 'support@lovelettersai.com',
-      mobile: getMailtoLink(
-        'support@lovelettersai.com',
-        'Customer support',
-        ''
-      ),
-      desktop: getGmailLink(
-        'support@lovelettersai.com',
-        'Customer support',
-        ''
-      ),
+      email: SUPPORT_EMAIL,
+      mobile: getMailtoLink(SUPPORT_EMAIL, 'Customer support', ''),
+      desktop: getGmailLink(SUPPORT_EMAIL, 'Customer support', ''),
     },
   },
   {
@@ -160,17 +157,9 @@ const items = [
     title: 'Notice a bug or issue?',
     content: 'Let us know! Send us an email',
     mailto: {
-      email: 'support@lovelettersai.com',
-      mobile: getMailtoLink(
-        'support@lovelettersai.com',
-        'Bug report or issue',
-        ''
-      ),
-      desktop: getGmailLink(
-        'support@lovelettersai.com',
-        'Bug report or issue',
-        ''
-      ),
+      email: SUPPORT_EMAIL,
+      mobile: getMailtoLink(SUPPORT_EMAIL, 'Bug report or issue', ''),
+      desktop: getGmailLink(SUPPORT_EMAIL, 'Bug report or issue', ''),
     },
   },
   {
@@ -178,17 +167,9 @@ const items = [
     title: 'Have feedback or suggestions?',
     content: 'Send an email to:',
     mailto: {
-      email: 'support@lovelettersai.com',
-      mobile: getMailtoLink(
-        'support@lovelettersai.com',
-        'Feedback or suggestions',
-        ''
-      ),
-      desktop: getGmailLink(
-        'support@lovelettersai.com',
-        'Feedback or suggestions',
-        ''
-      ),
+      email: SUPPORT_EMAIL,
+      mobile: getMailtoLink(SUPPORT_EMAIL, 'Feedback or suggestions', ''),
+      desktop: getGmailLink(SUPPORT_EMAIL, 'Feedback or suggestions', ''),
     },
   },
   {
@@ -252,13 +233,12 @@ function Section() {
 }
 
 export default function MarketingIndex() {
-  const email = 'cupid@lovelettersai.com'
   const subject = 'Send a Real Letter'
   const body =
     "Hi CeeCee, I'd like to send a real letter, can you help me with that?"
 
-  const gmailUrl = getGmailLink(email, subject, body)
-  const mailtoUrl = getMailtoLink(email, subject, body)
+  const gmailUrl = getGmailLink(CUPID_EMAIL, subject, body)
+  const mailtoUrl = getMailtoLink(CUPID_EMAIL, subject, body)
   return (
     <div className="min-h-screen w-full bg-gradient-to-b from-pink-50 to-red-50 flex flex-col items-center">
       <div
@@ -281,13 +261,13 @@ export default function MarketingIndex() {
             href={mailtoUrl}
             className="md:hidden text-2xl md:text-3xl text-gray-500 hover:text-red-500"
           >
-            {email}
+            {CUPID_EMAIL}
           </a>
           <a
             href={gmailUrl}
             className="hidden md:inline-block text-2xl md:text-3xl text-gray-500 hover:text-red-500"
           >
-            {email}
+            {CUPID_EMAIL}
           </a>
         </div>
       </div>
